@@ -1,4 +1,9 @@
-import decorator.*;
+import java.util.Locale.Category;
+
+import context.Order;
+import subject.*;
+import observer.*;
+import strategy.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,15 +18,37 @@ public class Main {
         // Order stateOrder = new Order();
         // stateOrder.proceed();
 
-        System.out.println("\n--- TESTING DECORATOR PATTERN ---");
+        // System.out.println("\n--- TESTING DECORATOR PATTERN ---");
 
-        OrderInterface myOrder = new BasicOrder();
+        // OrderInterface myOrder = new BasicOrder();
         
-        myOrder = new GiftWrapDecorator(myOrder);
+        // myOrder = new GiftWrapDecorator(myOrder);
         
-        myOrder = new InsuranceDecorator(myOrder);
+        // myOrder = new InsuranceDecorator(myOrder);
         
-        System.out.println("Noi dung: " + myOrder.getDescription());
-        System.out.println("Tong chi phi: " + myOrder.getCost());
+        // System.out.println("Noi dung: " + myOrder.getDescription());
+        // System.out.println("Tong chi phi: " + myOrder.getCost());
+
+        // Order order = new Order();
+
+        // order.setState(new NewOrderStrategy());
+        // order.process();
+
+        // order.setState(new ProcessingOrderStrategy());
+        // order.process();
+
+        // order.setState(new DeliveredOrderStrategy());
+        // order.process();
+
+        // order.setState(new CancelledOrderStrategy());
+        // order.process();
+
+        Order order = new Order();
+
+        order.addObserver(new Customer());
+        order.addObserver(new Admin());
+
+        order.setStatus("Đang xử lý");
+        order.setStatus("Đã giao");
     }
 }
